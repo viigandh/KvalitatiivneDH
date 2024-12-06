@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Joonis</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js" ></script>
+	<script>
+	   function setup(){
+	      createCanvas(600, 400);
+		  background("CornflowerBlue");
+		  let myColor;
+		  myColor = color(0, 0, random(225));
+		  line(150, 150, 500, 150);
+		  line(150, 170, 500, 170);
+		  ellipse(500, 160, 10, 20);
+		  ellipse(150, 160, 10, 20);
+		  ellipse(190, 160, 30, 18);
+		  	fill(myColor)
+	      osc=new p5.Oscillator("sine");
+	   }
+	   function mousePressed(){
+	       ellipse(mouseX, mouseY, 7, 7);
+		   osc.freq(100+2*mouseX);
+		   osc.start();
+	   }
+	</script>
+  </head>
+  <body>
+     <a href="https://vandramk.pparnumaa.ee/floot//">Flööt</a> <br />
+  </body>
+</html>
