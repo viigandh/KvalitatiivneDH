@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Kaart</title>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" />
+ <style>
+   body {padding: 0; margin: 0; }
+   html, body { height: 100%; width: 100%;}
+   #kaardikiht {width:60%; height:80%;}
+ </style>
+ <script>
+   var kaart;
+   function algus(){
+    kaart = L.map('kaardikiht').setView([58.383358, 24.534187], 13);
+      new L.TileLayer(
+  'https://tiles.maaamet.ee/tm/tms/1.0.0/hybriid@GMC/{z}/{x}/{y}.png&ASUTUS=TLU&ERIALA=DIGIHUMANITAARIA', {
+	  attribution: "Map: <a  href='http://www.maaamet.ee/'>Maa-amet</a>",
+	  tms: true,
+    }).addTo(kaart);
+      abikiht=L.layerGroup()
+      abikiht.addTo(kaart);
+    L.marker([58.386789, 24.49934], {title: "Minu asukoht: Pärnu Muuseum"}).addTo(kaart);  
+   }
+
+   function vajutus1() {
+    vastus1.innerText="Minu asukoht";
+    abikiht.clearLayers();
+    L.circle([58.386789, 24.49934],
+      {radius: 1000, color: "green"}).addTo(abikiht);
+
+
+   }
+
+
+   function vajutus2() {
+    vastus2.innerText="Pärnu Muuseumi filiaalid";
+    abikiht.clearLayers();
+    L.marker([58.385102, 24.503229]).addTo(abikiht);
+    L.marker([58.390823, 24.484972]).addTo(abikiht);
+   }
+
+      function vajutus3() {
+    vastus3.innerText="Lähimad toidupoed";
+    abikiht.clearLayers();
+    L.marker([58.387277, 24.501211]).addTo(abikiht);
+    L.marker([58.387388, 24.503872]).addTo(abikiht);
+    }
+   
+  </script>
+ </head>  
+ <body onload="algus()">
+  <input type="button" value="Minu asukoht" onclick="vajutus1()" />
+  <input type="button" value="Pärnu Muuseumi filiaalid" onclick="vajutus2()" />
+  <input type="button" value="Lähimad toidupoed" onclick="vajutus3()" />
+  <span id="vastus2"> Vastuse koht</span>
+  <span id="vastus3"> Vastuse koht</span>
+  <div id="kaardikiht"></div>
+ </body>
+</html>
